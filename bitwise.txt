@@ -1,0 +1,73 @@
+
+
+  AND, OR, NOT, XOR
+
+  Operation       Boolean Operator     Bitwise Operator
+      AND               && (and)              &
+      OR                || (or)               |
+      NOT               !  (not)              ~
+      XOR                none!                ^
+
+      OR: "At least one or the other is true"
+
+      AND         True & True --> True
+                  True & False --> True
+                  False & False --> False
+
+      OR          True || False --> True
+                  False || True --> True
+                  False || False --> False
+
+
+      XOR         True xor False --> True
+                  True xor True  --> False
+                  False xor False --> False
+
+  if (True and True): True
+  if (True and False): False
+
+  if a or b
+
+  if (True && False) {}
+  if (a || b) {}
+
+  0b1010101
+& 0b0000101
+  ---------
+  0b0000101
+
+  0b00111000
+& 0b10101100
+  ----------
+  0b00101000
+
+  0b01011111
+| 0b01111111
+  ----------
+
+
+Shifting
+--------
+right shifting
+
+0b10101011
+0b10101011 >> 1
+0b10101011 >> 2
+0b10101011 >> 3
+
+
+left shiting
+
+0b10101011 << 1
+0b10101011 << 2
+0b10101011 << 3
+
+
+
+Masking!
+--------
+
+  1010
+& 0011
+------
+  0010

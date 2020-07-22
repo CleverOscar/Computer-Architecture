@@ -9,7 +9,6 @@ class CPU:
         """Construct a new CPU."""
         self.ram = [None] * 256
         self.registers = [0] * 8
-        self.pc = 0
 
     def load(self):
         """Load a program into memory."""
@@ -69,9 +68,13 @@ class CPU:
 
     def run(self):
         """Run the CPU."""
-
+        running = True
         '''
             Commands
             MAR - Memory Address Register
             MDR - Memory Data Register
+            HTL - Halt exit the loop
+            LDI -
         '''
+        while running:
+            command = self.

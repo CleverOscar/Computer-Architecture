@@ -11,3 +11,10 @@ imports sys module.
 CPU Class, initilize cpu constructor,
 
 load function,
+
+
+#### Questions
+
+Is address acting as our PC?
+
+program holds our commands in binary form.
