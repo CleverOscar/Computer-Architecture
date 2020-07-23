@@ -10,20 +10,25 @@ class CPU:
         self.ram = [None] * 256
         self.registers = [0] * 8
         self.pc = 0
+        self.commands = {
+            "LDI": 0b10000010,
+            "PRN": 0b01000111,
+            "HLT": 0b00000001
+        }
 
     def load(self):
         """Load a program into memory."""
 
-        file = sys.argv[1] + '.ls8'
-
         address = 0
 
-        file = open(filename, 'r')
+        filename = sys.argv[1] + '.ls8'
 
+        file = open(filename, 'r')
         program = []
 
         for line in file:
-            print(line)
+            if not line[0] == '#' and not len(line.strip()) == 0:
+                program.append(int(line.strip()[:8], 2))
 
         for instruction in program:
             self.ram[address] = instruction
@@ -64,12 +69,33 @@ class CPU:
 
         print()
 
+    def halt(self):
+        sys.exit()
+
+    def ldi(self):
+        reg_address = self.ram[self.pc + 1]
+        value = self.ram[self.pc + 2]
+        self.registers[reg_address] = value
+
+    def prn(self):
+        reg_address = self.ram[self.pc + 1]
+        print(self.registers[reg_address])
+
     def run(self):
         """Run the CPU."""
-        pc = 0
         running = True
-        
-        command = self.ram_read(self.pc)
+        self.reg[7] = 0x74
 
         while running:
-            if
+            memory = self.ram[self.pc]
+            increment = ((memory & 0b11000000) >> 6) + 1
+            jumping = ((memory & 0b00010000) >> 4)
+
+            if memory in self.commands:
+                self.commands[memory]()
+            else:
+                print(f'instruction {memory} unknown')
+                break
+
+            if not jumping:
+                self.pc += increment
