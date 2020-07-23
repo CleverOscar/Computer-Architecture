@@ -64,8 +64,6 @@ while running:
         registers[first_reg] = registers[first_reg] + registers[sec_reg]
         pc += 2
 
-    if command == PUSH:
-        registers[7] -= 1
 
 
     pc += 1

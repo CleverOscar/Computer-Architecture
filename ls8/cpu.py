@@ -9,27 +9,21 @@ class CPU:
         """Construct a new CPU."""
         self.ram = [None] * 256
         self.registers = [0] * 8
+        self.pc = 0
 
     def load(self):
         """Load a program into memory."""
-        if len(sys.argv) < 2:
-            print('Please pass in a second file name')
-            sys.exit()
 
-        file = sys.argv[1]
-        load_memory(file)
+        file = sys.argv[1] + '.ls8'
 
         address = 0
 
-        program = [
-            # From print8.ls8
-            0b10000010, # LDI R0,8
-            0b00000000,
-            0b00001000,
-            0b01000111, # PRN R0
-            0b00000000,
-            0b00000001, # HLT
-        ]
+        file = open(filename, 'r')
+
+        program = []
+
+        for line in file:
+            print(line)
 
         for instruction in program:
             self.ram[address] = instruction
@@ -74,20 +68,8 @@ class CPU:
         """Run the CPU."""
         pc = 0
         running = True
-        '''
-            Commands
-            CALL
-            INT
-            IRET
-            JMP
-            JNE
-            JEQ
-            JGT
-            JGE
-            JLT
-            JLE
-            RET
-        '''
+        
         command = self.ram_read(self.pc)
 
         while running:
+            if
