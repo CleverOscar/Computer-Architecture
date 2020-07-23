@@ -12,10 +12,14 @@ class CPU:
 
     def load(self):
         """Load a program into memory."""
+        if len(sys.argv) < 2:
+            print('Please pass in a second file name')
+            sys.exit()
+
+        file = sys.argv[1]
+        load_memory(file)
 
         address = 0
-
-        # For now, we've just hardcoded a program:
 
         program = [
             # From print8.ls8
@@ -68,13 +72,22 @@ class CPU:
 
     def run(self):
         """Run the CPU."""
+        pc = 0
         running = True
         '''
             Commands
-            MAR - Memory Address Register
-            MDR - Memory Data Register
-            HTL - Halt exit the loop
-            LDI -
+            CALL
+            INT
+            IRET
+            JMP
+            JNE
+            JEQ
+            JGT
+            JGE
+            JLT
+            JLE
+            RET
         '''
+        command = self.ram_read(self.pc)
+
         while running:
-            command = self.

@@ -27,6 +27,8 @@ memory = [
 # We can loop over it!
 # register aka memory
 registers = [0] * 8
+
+registers[7] = 0xF4
 # [0,0,99,0,0,0,0,0]
 # R0-R7
 pc = 0  # program counter
@@ -61,5 +63,9 @@ while running:
         sec_reg = memory[pc + 2]
         registers[first_reg] = registers[first_reg] + registers[sec_reg]
         pc += 2
+
+    if command == PUSH:
+        registers[7] -= 1
+
 
     pc += 1
